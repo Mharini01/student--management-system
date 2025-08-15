@@ -1,0 +1,44 @@
+import database
+
+database.connect()
+
+print("=== Student Management System ===")
+print("1. Add Student")
+print("2. View Students")
+print("3. Update Student")
+print("4. Delete Student")
+print("5. Exit")
+
+while True:
+    choice = input("\nEnter choice: ")
+    
+    if choice == "1":
+        name = input("Enter Name: ")
+        age = int(input("Enter Age: "))
+        dept = input("Enter Department: ")
+        database.insert(name, age, dept)
+        print("✅ Student added successfully!")
+
+    elif choice == "2":
+        students = database.view()
+        for s in students:
+            print(s)
+
+    elif choice == "3":
+        id = int(input("Enter ID to update: "))
+        name = input("Enter New Name: ")
+        age = int(input("Enter New Age: "))
+        dept = input("Enter New Department: ")
+        database.update(id, name, age, dept)
+        print("✅ Student updated successfully!")
+
+    elif choice == "4":
+        id = int(input("Enter ID to delete: "))
+        database.delete(id)
+        print("✅ Student deleted successfully!")
+
+    elif choice == "5":
+        print("Exiting program... 👋")
+        break
+    else:
+        print("❌ Invalid choice. Try again.")
